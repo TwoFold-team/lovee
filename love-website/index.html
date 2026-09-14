@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لملك 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@400;700&family=Amiri:wght@400;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Floating Hearts -->
+<div class="hearts-bg" id="heartsBg"></div>
+
+<!-- Screen 1: Password -->
+<div class="screen active" id="screen-password">
+  <div class="heart-container">
+    <div class="big-heart"></div>
+    <div class="profile-pic">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff4081;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="url(#heartGrad)"/>
+        <path d="M50 75 C 50 75, 25 55, 25 40 C 25 28, 35 22, 43 26 C 47 28, 50 33, 50 37 C 50 33, 53 28, 57 26 C 65 22, 75 28, 75 40 C 75 55, 50 75, 50 75 Z" fill="white" opacity="0.95"/>
+      </svg>
+    </div>
+    <div class="title-ar">جاهزه</div>
+    <div class="subtitle-ar">كل الي بينا هنا</div>
+  </div>
+  <div class="password-box">
+    <label>Password</label>
+    <input type="password" id="passwordInput" autocomplete="off">
+    <button class="unlock-btn" onclick="checkPassword()">Unlock</button>
+  </div>
+</div>
+
+<!-- Screen 2: Message -->
+<div class="screen" id="screen-message">
+  <div class="message-card">
+    <div class="message-title">ينور عيني</div>
+    <div class="message-ar" id="msgAr"></div>
+    <div class="message-en" id="msgEn"></div>
+    <button class="next-btn" id="nextBtn" onclick="goToScreen('screen-love')">Next</button>
+  </div>
+</div>
+
+<!-- Screen 3: Love -->
+<div class="screen" id="screen-love" onclick="burstHearts(event)">
+  <div class="love-text">بحبك</div>
+  <div class="love-text-en">I love you</div>
+  <button class="next-btn show" onclick="goToScreen('screen-memory')" style="margin-top:40px;">Next</button>
+</div>
+
+<!-- Screen 4: Memory -->
+<div class="screen" id="screen-memory">
+  <div class="memory-title">بدايتنا</div>
+  
+  <div class="counter-box">
+    <div class="counter-title">سوا من 6-4-2025</div>
+    <div class="counter-grid">
+      <div class="counter-item">
+        <span class="counter-num" id="cDays">0</span>
+        <div class="counter-label">يوم</div>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" id="cHours">0</span>
+        <div class="counter-label">ساعة</div>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" id="cMins">0</span>
+        <div class="counter-label">دقيقة</div>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num" id="cSecs">0</span>
+        <div class="counter-label">ثانية</div>
+      </div>
+    </div>
+    <div class="counter-subtitle">كل ثانية بتعدي وانتي في قلبي</div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-title">أول يوم اتكلمنا فيه (عيد ميلادك)</div>
+    <div class="date-value">2025-04-06</div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-title">يوم ما قولتلك بحبك</div>
+    <div class="date-value">2025-08-22</div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-title">أول خروجة لينا سوا</div>
+    <div class="date-value">2025-11-09</div>
+  </div>
+
+  <div class="next-btn-container">
+    <button class="next-btn show" onclick="goToScreen('screen-gallery')">Next</button>
+  </div>
+</div>
+
+<!-- Screen 5: Gallery -->
+<div class="screen" id="screen-gallery">
+  <div class="gallery-title">ذكرياتنا</div>
+  <div class="gallery-container" id="galleryContainer"></div>
+  <div class="next-btn-container">
+    <button class="next-btn" id="galleryNextBtn" onclick="goToScreen('screen-video')">Next</button>
+  </div>
+</div>
+
+<!-- Screen 6: Video -->
+<div class="screen" id="screen-video">
+  <div class="video-title">لحظاتنا</div>
+  <div class="video-container">
+    <video id="loveVideo" controls playsinline loop muted preload="metadata">
+      <source src="media/video.mp4" type="video/mp4">
+      متصفحك مش بيدعم الفيديو
+    </video>
+  </div>
+  <div class="next-btn-container">
+    <button class="next-btn show" onclick="goToScreen('screen-final')">Next</button>
+  </div>
+</div>
+
+<!-- Screen 7: Final -->
+<div class="screen" id="screen-final">
+  <div class="final-card">
+    <div class="final-title">ملك يخليكي ليا</div>
+    <div class="final-ar" id="finalAr"></div>
+    <div class="final-en" id="finalEn"></div>
+  </div>
+</div>
+
+<!-- Music Player -->
+<div class="music-player" id="musicPlayer">
+  <div class="music-cover">
+    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+  </div>
+  <div class="music-info">
+    <div class="music-title">توليت</div>
+    <div class="music-artist">Tulip</div>
+  </div>
+  <div class="music-controls">
+    <button class="music-btn main" id="playBtn" onclick="togglePlay()">
+      <svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+  </div>
+  <audio id="bgMusic" loop>
+    <source src="media/song.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
